@@ -20,6 +20,9 @@ import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
+import ImageResizeEditing from '@ckeditor/ckeditor5-image/src/imageresize/imageresizeediting';
+import ImageResizeHandles from '@ckeditor/ckeditor5-image/src/imageresize/imageresizehandles';
+import LinkImage from '@ckeditor/ckeditor5-link/src/linkimage';
 import Indent from '@ckeditor/ckeditor5-indent/src/indent';
 import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
@@ -30,6 +33,11 @@ import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
+import Font from '@ckeditor/ckeditor5-font/src/font';
+import { StrapiUploadAdapter } from '@gtomato/ckeditor5-strapi-upload-plugin';
+import Clipboard from '@ckeditor/ckeditor5-clipboard/src/clipboard';
+import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
+import ImageResizeButtons from '@ckeditor/ckeditor5-image/src/imageresize/imageresizebuttons';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -46,6 +54,9 @@ ClassicEditor.builtinPlugins = [
 	EasyImage,
 	Heading,
 	Image,
+	ImageResizeEditing,
+	ImageResizeHandles,
+	LinkImage,
 	ImageCaption,
 	ImageStyle,
 	ImageToolbar,
@@ -58,7 +69,12 @@ ClassicEditor.builtinPlugins = [
 	PasteFromOffice,
 	Table,
 	TableToolbar,
-	TextTransformation
+	TextTransformation,
+	Font,
+	StrapiUploadAdapter,
+	ImageResizeButtons,
+	Clipboard,
+	Alignment,
 ];
 
 // Editor configuration.
@@ -70,6 +86,7 @@ ClassicEditor.defaultConfig = {
 			'bold',
 			'italic',
 			'link',
+			'alignment',
 			'bulletedList',
 			'numberedList',
 			'|',
@@ -77,30 +94,57 @@ ClassicEditor.defaultConfig = {
 			'indent',
 			'|',
 			'uploadImage',
+			'resizeImage',
+			'imageStyle:inline',
+			'imageStyle:block',
+			'imageStyle:side',
+			'linkImage',
+			'|',
+			'toggleImageCaption',
+			'imageTextAlternative',
+			'|',
 			'blockQuote',
 			'insertTable',
 			'mediaEmbed',
+			'fontSize',
+			'fontFamily',
+			'fontColor',
+			'fontBackgroundColor',
 			'undo',
-			'redo'
-		]
+			'redo',
+		],
+		viewportTopOffset: 30,
+		shouldNotGroupWhenFull: true,
 	},
 	image: {
+		toolbar: ['imageStyle:inline', 'imageStyle:block', 'imageStyle:side'],
+		styles: [
+			// This option is equal to a situation where no style is applied.
+			'full',
+
+			// This represents an image aligned to the left.
+			'alignLeft',
+
+			// This represents an image aligned to the right.
+			'alignRight',
+		],
+		sizes: ['50%', '75%', '100%'],
 		toolbar: [
-			'imageStyle:inline',
 			'imageStyle:block',
 			'imageStyle:side',
 			'|',
 			'toggleImageCaption',
-			'imageTextAlternative'
-		]
+			'imageTextAlternative',
+			'|',
+			'linkImage',
+		],
+	},
+	alignment: {
+		options: ['left', 'right', 'center', 'justify'],
 	},
 	table: {
-		contentToolbar: [
-			'tableColumn',
-			'tableRow',
-			'mergeTableCells'
-		]
+		contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'],
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
-	language: 'en'
+	language: 'en',
 };
