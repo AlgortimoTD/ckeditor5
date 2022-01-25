@@ -1,6 +1,6 @@
 {
-  "name": "@ckeditor/ckeditor5-build-classic",
-  "version": "31.1.0",
+  "name": "@algortimotd/ckeditor5-build-classic",
+  "version": "1.0.1",
   "description": "The classic editor build of CKEditor 5 – the best browser-based rich text editor.",
   "keywords": [
     "ckeditor5-build",
@@ -71,11 +71,14 @@
   "bugs": "https://github.com/ckeditor/ckeditor5/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ckeditor/ckeditor5.git",
+    "url": "https://github.com/AlgortimoTD/ckeditor5.git",
     "directory": "packages/ckeditor5-build-classic"
   },
   "scripts": {
     "build": "webpack --mode production",
     "preversion": "npm run build"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
