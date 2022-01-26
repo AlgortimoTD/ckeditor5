@@ -94,11 +94,6 @@ ClassicEditor.defaultConfig = {
 			'indent',
 			'|',
 			'uploadImage',
-			'resizeImage',
-			'imageStyle:inline',
-			'imageStyle:block',
-			'imageStyle:side',
-			'linkImage',
 			'|',
 			'toggleImageCaption',
 			'imageTextAlternative',
@@ -117,7 +112,6 @@ ClassicEditor.defaultConfig = {
 		shouldNotGroupWhenFull: true,
 	},
 	image: {
-		toolbar: ['imageStyle:inline', 'imageStyle:block', 'imageStyle:side'],
 		styles: [
 			// This option is equal to a situation where no style is applied.
 			'full',
@@ -128,8 +122,9 @@ ClassicEditor.defaultConfig = {
 			// This represents an image aligned to the right.
 			'alignRight',
 		],
-		sizes: ['50%', '75%', '100%'],
+		sizes: ['5%', '10%', '25%', '50%', '75%', '100%'],
 		toolbar: [
+			'imageStyle:inline',
 			'imageStyle:block',
 			'imageStyle:side',
 			'|',
@@ -137,6 +132,8 @@ ClassicEditor.defaultConfig = {
 			'imageTextAlternative',
 			'|',
 			'linkImage',
+			'|',
+			'resizeImage',
 		],
 	},
 	alignment: {
