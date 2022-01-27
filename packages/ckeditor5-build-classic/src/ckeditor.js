@@ -193,7 +193,9 @@ ClassicEditor.defaultConfig = {
 			},
 		],
 		toolbar: [
-			'imageStyle',
+			'imageStyle:inline',
+			'imageStyle:block',
+			'imageStyle:side',
 			'|',
 			'toggleImageCaption',
 			'imageTextAlternative',
