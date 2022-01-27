@@ -39,6 +39,7 @@ import { StrapiUploadAdapter } from '@gtomato/ckeditor5-strapi-upload-plugin';
 import Clipboard from '@ckeditor/ckeditor5-clipboard/src/clipboard';
 import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
 import ImageResizeButtons from '@ckeditor/ckeditor5-image/src/imageresize/imageresizebuttons';
+import sanitizeHtml from 'sanitize-html';
 import './styles.css';
 
 export default class ClassicEditor extends ClassicEditorBase {}
@@ -140,6 +141,20 @@ ClassicEditor.defaultConfig = {
 			'|',
 			'resizeImage',
 		],
+	},
+	htmlEmbed: {
+		showPreviews: true,
+		sanitizeHtml: (inputHtml) => {
+			// Strip unsafe elements and attributes, e.g.:
+			// the `<script>` elements and `on*` attributes.
+			const outputHtml = sanitizeHtml(inputHtml);
+
+			return {
+				html: outputHtml,
+				// true or false depending on whether the sanitizer stripped anything.
+				hasChanged: true,
+			};
+		},
 	},
 	alignment: {
 		options: ['left', 'right', 'center', 'justify'],
