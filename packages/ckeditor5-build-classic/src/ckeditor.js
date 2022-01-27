@@ -42,6 +42,8 @@ import ImageResizeButtons from '@ckeditor/ckeditor5-image/src/imageresize/imager
 import sanitizeHtml from 'sanitize-html';
 import SpecialCharacters from '@ckeditor/ckeditor5-special-characters/src/specialcharacters';
 import SpecialCharactersEssentials from '@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials';
+import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
+import SourceEditor from '@ckeditor/ckeditor5-source-editing/src/sourceediting';
 
 import './styles.css';
 
@@ -58,6 +60,8 @@ function SpecialCharactersArrowsExtended(editor) {
 
 // Plugins to include in the build.
 ClassicEditor.builtinPlugins = [
+	SourceEditor,
+	HorizontalLine,
 	SpecialCharacters,
 	SpecialCharactersEssentials,
 	SpecialCharactersArrowsExtended,
@@ -126,6 +130,7 @@ ClassicEditor.defaultConfig = {
 			'imageTextAlternative',
 			'|',
 			'specialCharacters',
+			'horizontalLine',
 			'blockQuote',
 			'insertTable',
 			'mediaEmbed',
@@ -135,6 +140,7 @@ ClassicEditor.defaultConfig = {
 			'fontBackgroundColor',
 			'|',
 			'htmlEmbed',
+			'sourceEditing',
 		],
 		viewportTopOffset: 30,
 		shouldNotGroupWhenFull: true,
