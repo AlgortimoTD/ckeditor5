@@ -31,6 +31,7 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
+import HtmlEmbed from '@ckeditor/ckeditor5-html-embed/src/htmlembed';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
 import Font from '@ckeditor/ckeditor5-font/src/font';
@@ -76,12 +77,15 @@ ClassicEditor.builtinPlugins = [
 	ImageResizeButtons,
 	Clipboard,
 	Alignment,
+	HtmlEmbed,
 ];
 
 // Editor configuration.
 ClassicEditor.defaultConfig = {
 	toolbar: {
 		items: [
+			'undo',
+			'redo',
 			'heading',
 			'|',
 			'bold',
@@ -106,8 +110,8 @@ ClassicEditor.defaultConfig = {
 			'fontFamily',
 			'fontColor',
 			'fontBackgroundColor',
-			'undo',
-			'redo',
+			'|',
+			'htmlEmbed',
 		],
 		viewportTopOffset: 30,
 		shouldNotGroupWhenFull: true,
