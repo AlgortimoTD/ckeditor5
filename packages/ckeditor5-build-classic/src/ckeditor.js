@@ -40,12 +40,27 @@ import Clipboard from '@ckeditor/ckeditor5-clipboard/src/clipboard';
 import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
 import ImageResizeButtons from '@ckeditor/ckeditor5-image/src/imageresize/imageresizebuttons';
 import sanitizeHtml from 'sanitize-html';
+import SpecialCharacters from '@ckeditor/ckeditor5-special-characters/src/specialcharacters';
+import SpecialCharactersEssentials from '@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials';
+
 import './styles.css';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
+function SpecialCharactersArrowsExtended(editor) {
+	editor.plugins.get('SpecialCharacters').addItems('Arrows', [
+		{ title: 'simple arrow left', character: '←' },
+		{ title: 'simple arrow up', character: '↑' },
+		{ title: 'simple arrow right', character: '→' },
+		{ title: 'simple arrow down', character: '↓' },
+	]);
+}
+
 // Plugins to include in the build.
 ClassicEditor.builtinPlugins = [
+	SpecialCharacters,
+	SpecialCharactersEssentials,
+	SpecialCharactersArrowsExtended,
 	Essentials,
 	UploadAdapter,
 	Autoformat,
@@ -91,7 +106,13 @@ ClassicEditor.defaultConfig = {
 			'|',
 			'bold',
 			'italic',
+			'underline',
+			'strikethrough',
+			'code',
+			'subscript',
+			'superscript',
 			'link',
+			'|',
 			'alignment',
 			'bulletedList',
 			'numberedList',
@@ -104,6 +125,7 @@ ClassicEditor.defaultConfig = {
 			'toggleImageCaption',
 			'imageTextAlternative',
 			'|',
+			'specialCharacters',
 			'blockQuote',
 			'insertTable',
 			'mediaEmbed',
