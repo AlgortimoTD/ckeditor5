@@ -38,6 +38,7 @@ import { StrapiUploadAdapter } from '@gtomato/ckeditor5-strapi-upload-plugin';
 import Clipboard from '@ckeditor/ckeditor5-clipboard/src/clipboard';
 import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
 import ImageResizeButtons from '@ckeditor/ckeditor5-image/src/imageresize/imageresizebuttons';
+import './styles.css';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
