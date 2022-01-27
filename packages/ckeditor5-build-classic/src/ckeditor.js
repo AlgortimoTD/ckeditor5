@@ -9,6 +9,7 @@ import ClassicEditorBase from '@ckeditor/ckeditor5-editor-classic/src/classicedi
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 import UploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter';
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
+import AutoLink from '@ckeditor/ckeditor5-link/src/autolink';
 
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
@@ -88,6 +89,7 @@ ClassicEditor.builtinPlugins = [
 	EasyImage,
 	Heading,
 	Image,
+	AutoLink,
 	ImageResizeEditing,
 	ImageResizeHandles,
 	LinkImage,
@@ -168,11 +170,30 @@ ClassicEditor.defaultConfig = {
 			// This represents an image aligned to the right.
 			'alignRight',
 		],
-		sizes: ['5%', '10%', '25%', '50%', '75%', '100%'],
+		resizeOptions: [
+			{
+				name: 'resizeImage:original',
+				value: null,
+				label: 'Original',
+			},
+			{
+				name: 'resizeImage:10',
+				value: '10',
+				label: '10%',
+			},
+			{
+				name: 'resizeImage:40',
+				value: '40',
+				label: '40%',
+			},
+			{
+				name: 'resizeImage:60',
+				value: '60',
+				label: '60%',
+			},
+		],
 		toolbar: [
-			'imageStyle:inline',
-			'imageStyle:block',
-			'imageStyle:side',
+			'imageStyle',
 			'|',
 			'toggleImageCaption',
 			'imageTextAlternative',
@@ -201,6 +222,31 @@ ClassicEditor.defaultConfig = {
 	},
 	table: {
 		contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'],
+	},
+	link: {
+		defaultProtocol: 'https://',
+		// Automatically add target="_blank" and rel="noopener noreferrer" to all external links.
+		addTargetToExternalLinks: true,
+
+		// Let the users control the "download" attribute of each link.
+		decorators: {
+			toggleDownloadable: {
+				mode: 'manual',
+				label: 'Downloadable',
+				attributes: {
+					download: 'file',
+				},
+			},
+			openInNewTab: {
+				mode: 'manual',
+				label: 'Open in a new tab',
+				defaultValue: true, // This option will be selected by default.
+				attributes: {
+					target: '_blank',
+					rel: 'noopener noreferrer',
+				},
+			},
+		},
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en',
